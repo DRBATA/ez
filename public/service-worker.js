@@ -3,27 +3,30 @@ const urlsToCache = [
   "/",
   "/index.html",
   "/manifest.json",
-  "/src/main.jsx",
+  "/src/main.jsx", // Ensure these paths exist
   "/src/App.jsx",
   "/icon-192x192.png",
   "/icon-512x512.png"
 ];
 
-// Install Service Worker and cache assets
+// Install Service Worker and cache necessary files
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        return cache.addAll(urlsToCache);
+      })
+      .catch((error) => console.error("Cache addAll failed:", error))
   );
 });
 
 // Fetch assets from cache first, then network as fallback
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
+    caches.match(event.request)
+      .then((response) => {
+        return response || fetch(event.request);
+      })
   );
 });
 
