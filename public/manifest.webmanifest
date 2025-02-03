@@ -1,10 +1,6 @@
 {
-  "name": "EasyGP",
   "short_name": "EasyGP",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#008080",
+  "name": "EasyGP PWA",
   "icons": [
     {
       "src": "/icon-192x192.png",
@@ -16,5 +12,9 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#008080",
+  "background_color": "#ffffff"
 }
